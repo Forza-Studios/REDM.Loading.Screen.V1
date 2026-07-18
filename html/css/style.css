@@ -34,6 +34,7 @@ html, body {
 	height: 100%;
 	object-fit: cover;
 	z-index: 0;
+	transition: opacity 0.8s ease-in-out;
 }
 
 .vignette {

@@ -16,8 +16,12 @@ window.NEVERA_CONFIG = {
 
 	hintText: "Keep your gun holstered in towns to avoid unnecessary trouble.",
 
-	// HLS (.m3u8) stream used as the background video. Leave blank to fall back to a static background.
-	videoSource: "https://rumble.com/hls-vod/7aq5mo/playlist.m3u8",
+	// HLS (.m3u8) streams used as the background video. You can add multiple and cycle through them.
+	videoSources: [
+		"https://rumble.com/hls-vod/7aq5mo/playlist.m3u8",
+		"https://rumble.com/hls-vod/7aq5mo/playlist.m3u8"
+	
+	],
 
 	// Muted autoplay is required by browser/CEF policy. Player can unmute via the control dock.
 	startMuted: true,

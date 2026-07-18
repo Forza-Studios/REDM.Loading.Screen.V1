@@ -49,28 +49,56 @@
 	video.muted = cfg.startMuted !== false;
 	video.volume = (cfg.startVolume ?? 45) / 100;
 
-	function startPlayback(src) {
+	const videoSources = cfg.videoSources || (cfg.videoSource ? [cfg.videoSource] : []);
+	let currentVideoIndex = 0;
+	let currentHls = null;
+
+	function loadVideo(index, initial = false) {
+		if (videoSources.length === 0) return;
+		const src = videoSources[index];
 		if (!src) return;
 
-		if (video.canPlayType("application/vnd.apple.mpegurl")) {
-			video.src = src;
-		} else if (window.Hls && window.Hls.isSupported()) {
-			const hls = new Hls({ maxBufferLength: 30 });
-			hls.loadSource(src);
-			hls.attachMedia(video);
-			hls.on(Hls.Events.ERROR, (event, data) => {
-				if (data.fatal) console.warn("[Nevera] HLS fatal error:", data.type, data.details);
-			});
-		}
+		const playSource = () => {
+			if (currentHls) {
+				currentHls.destroy();
+				currentHls = null;
+			}
 
-		video.play().catch(() => {
-			video.muted = true;
-			updatePauseIcon();
-			video.play().catch(() => {});
-		});
+			if (video.canPlayType("application/vnd.apple.mpegurl")) {
+				video.src = src;
+			} else if (window.Hls && window.Hls.isSupported()) {
+				const hls = new Hls({ maxBufferLength: 30 });
+				currentHls = hls;
+				hls.loadSource(src);
+				hls.attachMedia(video);
+				hls.on(Hls.Events.ERROR, (event, data) => {
+					if (data.fatal) console.warn("[Nevera] HLS fatal error:", data.type, data.details);
+				});
+			}
+
+			video.play().then(() => {
+				video.style.opacity = 1;
+				updatePauseIcon();
+			}).catch(() => {
+				video.muted = true;
+				video.play().then(() => {
+					video.style.opacity = 1;
+					updatePauseIcon();
+				}).catch(() => {});
+			});
+		};
+
+		if (initial) {
+			playSource();
+		} else {
+			video.style.opacity = 0;
+			setTimeout(playSource, 800); // Wait for CSS fade out transition
+		}
 	}
 
-	startPlayback(cfg.videoSource);
+	if (videoSources.length > 0) {
+		loadVideo(currentVideoIndex, true);
+	}
 
 	/* =========================================================
 	   3. Controls
@@ -83,7 +111,11 @@
 	const musicControls = document.querySelector(".music-controls");
 	const layoutContainer = document.querySelector(".layout-container");
 
+	const btnPrev = document.getElementById("btn-prev");
+	const btnNext = document.getElementById("btn-next");
+
 	function updatePauseIcon() {
+		if (!btnPause) return;
 		btnPause.innerHTML = video.paused
 			? '<i class="bi bi-play-fill"></i>'
 			: '<i class="bi bi-pause-fill"></i>';
@@ -97,6 +129,22 @@
 				video.pause();
 			}
 			updatePauseIcon();
+		});
+	}
+
+	if (btnPrev) {
+		btnPrev.addEventListener("click", () => {
+			if (videoSources.length <= 1) return;
+			currentVideoIndex = (currentVideoIndex - 1 + videoSources.length) % videoSources.length;
+			loadVideo(currentVideoIndex);
+		});
+	}
+
+	if (btnNext) {
+		btnNext.addEventListener("click", () => {
+			if (videoSources.length <= 1) return;
+			currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+			loadVideo(currentVideoIndex);
 		});
 	}
 
