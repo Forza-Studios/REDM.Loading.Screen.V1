@@ -23,6 +23,7 @@ html, body {
 	background: #000;
 	font-family: 'Vollkorn', serif;
 	color: var(--text-main);
+	cursor: default;
 }
 
 /* ---------- Background video ---------- */
@@ -317,6 +318,49 @@ html, body {
 .music-btn:hover, .music-btn.active {
 	background: rgba(255, 255, 255, 0.2);
 	transform: translateY(-2px);
+}
+
+.volume-container {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background: var(--bg-transparent);
+	border: 1px solid var(--border-color);
+	border-radius: 8px;
+	padding: 0 15px;
+	height: 40px;
+}
+
+.volume-container i {
+	font-size: 18px;
+	color: var(--text-main);
+}
+
+.volume-slider {
+	-webkit-appearance: none;
+	width: 80px;
+	height: 4px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 2px;
+	outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: var(--text-main);
+	cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: var(--text-main);
+	cursor: pointer;
 }
 
 .action-buttons {

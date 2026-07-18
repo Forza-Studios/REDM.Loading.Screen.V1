@@ -113,6 +113,32 @@
 
 	const btnPrev = document.getElementById("btn-prev");
 	const btnNext = document.getElementById("btn-next");
+	const volumeSlider = document.getElementById("volume-slider");
+	const volumeIcon = document.getElementById("volume-icon");
+
+	// Initialize volume slider with config value
+	if (volumeSlider) {
+		volumeSlider.value = cfg.startVolume ?? 100;
+		
+		volumeSlider.addEventListener("input", (e) => {
+			const vol = e.target.value;
+			video.volume = vol / 100;
+			
+			// Update icon based on volume level
+			if (vol == 0) {
+				volumeIcon.className = "bi bi-volume-mute-fill";
+			} else if (vol < 50) {
+				volumeIcon.className = "bi bi-volume-down-fill";
+			} else {
+				volumeIcon.className = "bi bi-volume-up-fill";
+			}
+			
+			// Unmute if muted and volume is raised
+			if (vol > 0 && video.muted) {
+				video.muted = false;
+			}
+		});
+	}
 
 	function updatePauseIcon() {
 		if (!btnPause) return;

@@ -24,8 +24,8 @@ window.NEVERA_CONFIG = {
 	],
 
 	// Muted autoplay is required by browser/CEF policy. Player can unmute via the control dock.
-	startMuted: true,
-	startVolume: 45,
+	startMuted: false,
+	startVolume: 100,
 
 	socials: {
 		discord: "https://discord.gg/yourinvite",
