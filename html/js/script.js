@@ -80,7 +80,7 @@
 	const btnMusic = document.getElementById("btn-music");
 	const btnEye = document.getElementById("btn-eye");
 	const btnCloseAll = document.getElementById("btn-close");
-	const musicPlayer = document.querySelector(".music-player");
+	const musicControls = document.querySelector(".music-controls");
 	const layoutContainer = document.querySelector(".layout-container");
 
 	function updatePauseIcon() {
@@ -91,15 +91,19 @@
 
 	if (btnPause) {
 		btnPause.addEventListener("click", () => {
-			if (video.paused) video.play(); else video.pause();
+			if (video.paused) {
+				video.play();
+			} else {
+				video.pause();
+			}
 			updatePauseIcon();
 		});
 	}
 
 	if (btnMusic) {
 		btnMusic.addEventListener("click", () => {
-			if (musicPlayer) {
-				musicPlayer.style.display = musicPlayer.style.display === "none" ? "flex" : "none";
+			if (musicControls) {
+				musicControls.style.display = musicControls.style.display === "none" ? "flex" : "none";
 			}
 			btnMusic.classList.toggle("active");
 		});
@@ -128,7 +132,7 @@
 	   ========================================================= */
 
 	const telegraphMsg = document.getElementById("telegraph-msg");
-	const lines = cfg.telegraphLines?.length ? cfg.telegraphLines : ["LOADING..."];
+	const lines = cfg.telegraphLines?.length ? cfg.telegraphLines : [""];
 	let lineIndex = 0;
 
 	function rotateLine() {

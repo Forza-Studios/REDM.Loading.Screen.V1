@@ -35,21 +35,6 @@ window.NEVERA_CONFIG = {
 		website: "https://valenor.studio"
 	},
 
-	// Rotating flavor lines shown under the progress bar while assets load.
-	telegraphLines: [
-		"Loading..",
-		"SADDLING HORSES...",
-		"LOADING THE HOMESTEAD...",
-		"CHECKING THE POSSE ROSTER...",
-		"DUSTING OFF THE WANTED BOARD...",
-		"STOCKING THE GENERAL STORE...",
-		"SHARPENING THE PROSPECTOR'S PICK...",
-		"WARMING UP THE CAMPFIRE...",
-		"COUNTING THE STRONGBOX..."
-	],
-
-	// How often (ms) the telegraph line rotates
-	telegraphInterval: 2600,
 
 	// Fake progress speed used ONLY when this page is opened outside the game (for local preview).
 	previewMode: {
