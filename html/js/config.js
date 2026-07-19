@@ -19,7 +19,7 @@ window.NEVERA_CONFIG = {
 	// HLS (.m3u8) streams used as the background video. You can add multiple and cycle through them.
 	videoSources: [
 		"https://rumble.com/hls-vod/7aq5mo/playlist.m3u8",
-		"https://rumble.com/hls-vod/7aq5mo/playlist.m3u8"
+		"https://rumble.com/hls-vod/7arego/playlist.m3u8"
 	
 	],
 
