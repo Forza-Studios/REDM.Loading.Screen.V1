@@ -28,15 +28,15 @@ window.NEVERA_CONFIG = {
 	startVolume: 100,
 
 	socials: {
-		discord: "https://discord.gg/yourinvite",
-		instagram: "https://instagram.com",
-		youtube: "https://youtube.com",
+		discord: "",
+		instagram: "",
+		youtube: "",
 		twitter: "",
-		tiktok: "https://tiktok.com",
+		tiktok: "",
 		facebook: "",
 		twitch: "",
 		github: "",
-		website: "https://valenor.studio"
+		website: ""
 	},
 
 

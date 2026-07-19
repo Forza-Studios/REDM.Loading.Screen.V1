@@ -8,6 +8,7 @@ description 'Custom RedM loading screen - wanted poster / telegraph theme'
 version '1.0.0'
 
 loadscreen 'html/index.html'
+loadscreen_cursor 'yes'
 -- Removed manual shutdown to let RedM automatically close the loadscreen when loading is complete
 -- loadscreen_manual_shutdown 'yes'
 
