@@ -28,15 +28,15 @@ window.NEVERA_CONFIG = {
 	startVolume: 100,
 
 	socials: {
-		discord: "",
-		instagram: "",
-		youtube: "",
-		twitter: "",
-		tiktok: "",
-		facebook: "",
-		twitch: "",
-		github: "",
-		website: ""
+		discord: "https://redm.net",
+		instagram: "https://redm.net",
+		youtube: "https://redm.net",
+		twitter: "https://redm.net",
+		tiktok: "https://redm.net",
+		facebook: "https://redm.net",
+		twitch: "https://redm.net",
+		github: "https://redm.net",
+		website: "https://redm.net"
 	},
 
 
